@@ -6,11 +6,11 @@ import os
 import pandas as pd
 
 # Vectorizer
-news_vectorizer = open(r"c:\Users\motlalepula\Downloads/Vectorizer.pkl", "rb")
+news_vectorizer = open(r"Vectorizer.pkl", "rb")
 tweet_cv = joblib.load(news_vectorizer)  # loading your vectorizer from the pkl file
 
 # Load your raw data
-raw = pd.read_csv(r"C:\Users\motlalepula\Desktop\app.py\train.csv")
+raw = pd.read_csv(r"train.csv")
 
 # The main function where we will build the actual app
 def main():
@@ -80,11 +80,11 @@ def main():
             vect_text = tweet_cv.transform([tweet_text]).toarray()
 
             if selected_model == "Logistic Regression":
-                predictor = joblib.load(open(r"C:\Users\motlalepula\Desktop\app.py\Logistic_Regression.pkl", "rb"))
+                predictor = joblib.load(open(r"Logistic_Regression.pkl", "rb"))
             elif selected_model == "Random Forest":
-                predictor = joblib.load(open(r"C:\Users\motlalepula\Desktop\app.py\Decision_Tree_Classifier.pkl", "rb"))
+                predictor = joblib.load(open(r"Decision_Tree_Classifier.pkl", "rb"))
             elif selected_model == "SVM":
-                predictor = joblib.load(open(r"c:\Users\motlalepula\Downloads\Support_Vector.pkl", "rb"))
+                predictor = joblib.load(open(r"Support_Vector.pkl", "rb"))
             else:
                 st.error("Invalid model selection")
 
