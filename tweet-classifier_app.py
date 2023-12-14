@@ -6,8 +6,8 @@ import os
 import pandas as pd
 
 # Vectorizer
-news_vectorizer = open(r"Vectorizer.pkl", "rb")
-tweet_cv = joblib.load(news_vectorizer)  # loading your vectorizer from the pkl file
+vectorizer = open(r"Vectorizer.pkl", "rb")
+tweet_cv = joblib.load(vectorizer)  # loading your vectorizer from the pkl file
 
 # Load your raw data
 raw = pd.read_csv(r"train.csv")
