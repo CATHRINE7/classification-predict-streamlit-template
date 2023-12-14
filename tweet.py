@@ -1,16 +1,13 @@
 import streamlit as st
-import joblib
+import joblib,os
 import pandas as pd
 
 # Vectorizer
-vectorizer_path = "Vectorizer.pkl"
-vectorizer_full_path = os.path.join(os.getcwd(), vectorizer_path)
-
-with open(vectorizer_full_path, "rb") as vectorizer_file:
-    tweet_cv = joblib.load(vectorizer_file)
+news_vectorizer = open(r"Vectorizer.pkl", "rb")
+tweet_cv = joblib.load(news_vectorizer)  # loading your vectorizer from the pkl file
 
 # Load your raw data
-raw = pd.read_csv("train.csv")
+raw = pd.read_csv(r"train.csv")
 
 # The main function where we will build the actual app
 def main():
