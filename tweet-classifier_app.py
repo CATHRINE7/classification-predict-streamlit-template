@@ -1,25 +1,32 @@
 import streamlit as st
 import joblib
-import os
-
-# Data dependencies
 import pandas as pd
 
 # Vectorizer
-vectorizer = open(r"Vectorizer.pkl", "rb")
-tweet_cv = joblib.load(vectorizer)  # loading your vectorizer from the pkl file
+vectorizer_path = "Vectorizer.pkl"
+vectorizer_full_path = os.path.join(os.getcwd(), vectorizer_path)
+
+with open(vectorizer_full_path, "rb") as vectorizer_file:
+    tweet_cv = joblib.load(vectorizer_file)
 
 # Load your raw data
-raw = pd.read_csv(r"train.csv")
+raw = pd.read_csv("train.csv")
 
 # The main function where we will build the actual app
 def main():
     """Tweet Classifier App with Streamlit """
 
+    # Setting page configuration
+    st.set_page_config(
+        page_title="Tweet Classifier App",
+        page_icon=":speech_balloon:",
+        layout="wide",
+    )
+
     # Creates a main title and subheader on your page -
     # these are static across all pages
     st.title("Tweet Classifier")
-    st.subheader("Climate change tweet classification")
+    st.subheader("Climate Change Tweet Classification")
 
     # Creating sidebar with selection box -
     # you can create multiple pages this way
@@ -38,7 +45,7 @@ def main():
 
     # Building out the "Meet the Team" page
     elif selection == "Meet the Team":
-        st.info("Meet the Team")
+        st.success("Meet the Team")
 
         # Team Lead
         st.write("- Cathrine Mamosadi: Team Lead")
@@ -68,6 +75,7 @@ def main():
     # Building out the "Prediction" page
     elif selection == "Prediction":
         st.info("Prediction with ML Models")
+
         # Creating a text box for user input
         tweet_text = st.text_area("Enter Text", "Type Here")
 
@@ -93,7 +101,7 @@ def main():
             # When the model has successfully run, will print prediction
             # You can use a dictionary or similar structure to make this output
             # more human interpretable.
-            st.success("Text Categorized as: {}".format(prediction))
+            st.success(f"Text Categorized as: {prediction[0]}")
 
     # Building out the "Last Page" page
     elif selection == "Last Page":
@@ -101,7 +109,7 @@ def main():
         st.subheader("App Summary")
         st.write("Thank you for using the Tweet Classifier App! This app helps you classify climate change-related tweets.")
 
-         # Next Steps
+        # Next Steps
         st.subheader("Next Steps")
         st.write("Explore more features, provide feedback, or visit our website for related resources.")
 
@@ -110,9 +118,9 @@ def main():
         st.write("Thank you for using the Tweet Classifier App. We appreciate your time")
 
     # Building out the "Raw Twitter data and label" section
-    st.subheader("Raw Twitter data and label")
-    if st.checkbox('Show raw data'):  # data is hidden if the box is unchecked
-        st.write(raw[['sentiment', 'message']])  # will write the df to the page
+    st.subheader("Raw Twitter Data and Label")
+    if st.checkbox('Show Raw Data'):  # data is hidden if the box is unchecked
+        st.dataframe(raw[['sentiment', 'message']])  # will write the df to the page
 
 if __name__ == '__main__':
     main()
