@@ -3,7 +3,10 @@ import streamlit as st
 import joblib
 import pandas as pd
 import warnings
-import scipy.sparse
+from scipy import sparse
+from scipy import sparse
+from scipy.sparse import _csr
+#import scipy.sparse
 import pickle
 #from sklearn.exceptions import InconsistentVersionWarning
 #warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
