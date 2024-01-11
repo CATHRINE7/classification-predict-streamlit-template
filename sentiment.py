@@ -2,8 +2,7 @@ import os
 import streamlit as st
 import joblib
 import pandas as pd
-import warnings
-from scipy import sparse
+import numpy as np
 #from scipy import sparse
 #from scipy.sparse import _csr
 #import scipy.sparse
