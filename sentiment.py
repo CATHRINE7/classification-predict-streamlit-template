@@ -3,9 +3,10 @@ import streamlit as st
 import joblib
 import pandas as pd
 import warnings
-from sklearn.exceptions import InconsistentVersionWarning
+warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+#from sklearn.exceptions import InconsistentVersionWarning
 
-warnings.simplefilter("ignore", InconsistentVersionWarning)
+#warnings.simplefilter("ignore", InconsistentVersionWarning)
 
 # Vectorizer
 vectorizer_path = "Vectorizer.pkl"
