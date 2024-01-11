@@ -12,10 +12,8 @@ import pickle
 # Vectorizer
 vectorizer_path = "Vectorizer.pkl"
 vectorizer_full_path = os.path.join(os.getcwd(), vectorizer_path)
-
 with open(vectorizer_full_path, "rb") as vectorizer_file:
     tweet_cv = joblib.load(vectorizer_file)
-
 # Load your raw data
 raw = pd.read_csv("train.csv")
 
